@@ -67,7 +67,7 @@ coap_opt_parse(const coap_opt_t *opt, size_t length, coap_option_t *result) {
       coap_log_debug("delta too large\n");
       return 0;
     }
-  /* fall through */
+    __attribute__((__fallthrough__));
   case 13:
     ADVANCE_OPT_CHECK(opt,length,1);
     result->delta += *opt & 0xff;
@@ -87,7 +87,7 @@ coap_opt_parse(const coap_opt_t *opt, size_t length, coap_option_t *result) {
      * just like case delta == 13. */
     ADVANCE_OPT_CHECK(opt,length,1);
     result->length = ((*opt & 0xff) << 8) + 269;
-  /* fall through */
+    __attribute__((__fallthrough__));
   case 13:
     ADVANCE_OPT_CHECK(opt,length,1);
     result->length += *opt & 0xff;
@@ -219,11 +219,11 @@ coap_opt_length(const coap_opt_t *opt) {
     return 0;
   case 0xe0:
     ++opt;
-  /* fall through */
+    __attribute__((__fallthrough__));
   /* to skip another byte */
   case 0xd0:
     ++opt;
-  /* fall through */
+    __attribute__((__fallthrough__));
   /* to skip another byte */
   default:
     ++opt;
@@ -235,7 +235,7 @@ coap_opt_length(const coap_opt_t *opt) {
     return 0;
   case 0x0e:
     length = (*opt++ << 8) + 269;
-  /* fall through */
+    __attribute__((__fallthrough__));
   case 0x0d:
     length += *opt++;
     break;
@@ -255,7 +255,7 @@ coap_opt_value(const coap_opt_t *opt) {
     return 0;
   case 0xe0:
     ++ofs;
-  /* fall through */
+    __attribute__((__fallthrough__));
   case 0xd0:
     ++ofs;
     break;
@@ -269,7 +269,7 @@ coap_opt_value(const coap_opt_t *opt) {
     return 0;
   case 0x0e:
     ++ofs;
-  /* fall through */
+    __attribute__((__fallthrough__));
   case 0x0d:
     ++ofs;
     break;
