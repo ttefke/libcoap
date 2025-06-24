@@ -647,8 +647,12 @@ coap_resolve_address_info(const coap_str_const_t *address,
   error = getaddrinfo(addrstr, NULL, &hints, &res);
 
   if (error != 0) {
+#ifdef WITH_LWIP
+    coap_log_warn("getaddrinfo: %s\n", strerror(error));
+#else
     coap_log_warn("getaddrinfo: %s: %s\n", addrstr, gai_strerror(error));
     return NULL;
+#endif
   }
 
   for (ainfo = res; ainfo != NULL; ainfo = ainfo->ai_next) {
