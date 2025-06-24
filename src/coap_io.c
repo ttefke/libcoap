@@ -19,6 +19,10 @@
 #  include <stdio.h>
 #endif
 
+#ifdef WITH_LWIP
+#include <lwip/errno.h>
+#endif
+
 #ifdef HAVE_SYS_SELECT_H
 # include <sys/select.h>
 #endif
