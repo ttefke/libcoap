@@ -36,7 +36,7 @@ typedef uint32_t coap_tick_t;
 typedef uint32_t coap_time_t;
 typedef int32_t coap_tick_diff_t;
 
-COAP_STATIC_INLINE void
+static inline void
 coap_ticks_impl(coap_tick_t *t) {
   *t = sys_now();
 }
