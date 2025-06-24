@@ -1429,7 +1429,7 @@ coap_check_code_class(coap_session_t *session, coap_pdu_t *pdu) {
     if (COAP_PROTO_RELIABLE(session->proto))
       break;
   /* Not valid if UDP */
-  /* Fall through */
+  __attribute__((__fallthrough__)); 
   case 1: /* Invalid */
   case 6: /* Invalid */
   default:

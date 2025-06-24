@@ -6,8 +6,6 @@ NAME := libcoap
 # Include source files
 ifeq ($(CONFIG_INCLUDE_COAP), 1)
 
-CFLAGS += -Wno-error=implicit-fallthrough
-
 # Includes to be exported to project level
 COMPONENT_ADD_INCLUDEDIRS += include
 
