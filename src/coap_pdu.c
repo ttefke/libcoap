@@ -100,7 +100,6 @@ coap_pdu_init(coap_pdu_type_t type, coap_pdu_code_t code, coap_mid_t mid,
 
 #ifndef RIOT_VERSION
   assert(type <= 0x3);
-  assert(code <= 0xff);
   assert(mid >= 0 && mid <= 0xffff);
 #endif /* RIOT_VERSION */
 
@@ -1568,9 +1567,6 @@ coap_pdu_get_code(const coap_pdu_t *pdu) {
 
 void
 coap_pdu_set_code(coap_pdu_t *pdu, coap_pdu_code_t code) {
-#ifndef RIOT_VERSION
-  assert(code <= 0xff);
-#endif /* RIOT_VERSION */
   pdu->code = code;
 }
 
