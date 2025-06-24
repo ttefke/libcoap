@@ -54,7 +54,11 @@ extern "C" {
 #    if defined(_MSC_VER)
 #      define COAP_STATIC_INLINE static __inline
 #    else
-#      define COAP_STATIC_INLINE static inline
+#      if WITH_COAP
+#        define COAP_STATIC_INLINE inline
+#      else
+#        define COAP_STATIC_INLINE static inline
+#      endif
 #    endif
 #  endif
 #endif
