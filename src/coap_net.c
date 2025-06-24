@@ -57,7 +57,11 @@
 #endif
 
 #ifdef HAVE_NETDB_H
-#include <netdb.h>
+#ifdef WITH_LWIP
+  #include <lwip/netdb.h>
+#else
+  #include <netdb.h>
+#endif
 #endif
 #endif /* !__ZEPHYR__ */
 
@@ -66,6 +70,7 @@
 #include <lwip/udp.h>
 #include <lwip/timeouts.h>
 #include <lwip/tcpip.h>
+#include <lwip/errno.h>
 #endif
 
 #ifndef INET6_ADDRSTRLEN

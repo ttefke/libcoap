@@ -17,6 +17,10 @@
 #include "coap3/coap_libcoap_build.h"
 #include "coap3/coap_session_internal.h"
 
+#ifdef WITH_LWIP
+#include <lwip/errno.h>
+#endif
+
 /*
  * return 1 netif still in use.
  *        0 netif no longer available.

@@ -15,6 +15,11 @@
 
 #include "coap3/coap_libcoap_build.h"
 
+#ifdef WITH_LWIP
+#include <lwip/errno.h>
+#include <lwip/sockets.h>
+#endif
+
 #if !defined(WITH_CONTIKI) && !defined(WITH_LWIP) && !defined(RIOT_VERSION)
 #ifndef __ZEPHYR__
 #ifdef HAVE_ARPA_INET_H
@@ -395,7 +400,11 @@ update_port(coap_address_t *addr, uint16_t port, uint16_t default_port,
 }
 
 #ifdef HAVE_NETDB_H
-#include <netdb.h>
+#ifdef WITH_LWIP
+  #include <lwip/netdb.h>
+#else
+  #include <netdb.h>
+#endif
 #endif
 
 uint32_t

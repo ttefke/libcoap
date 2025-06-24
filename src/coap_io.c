@@ -22,6 +22,10 @@
 # include <unistd.h>
 #endif
 
+#ifdef WITH_LWIP
+#include <lwip/errno.h>
+#endif
+
 #ifndef __ZEPHYR__
 #ifdef HAVE_SYS_SELECT_H
 # include <sys/select.h>
