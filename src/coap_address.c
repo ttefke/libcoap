@@ -556,7 +556,11 @@ coap_resolve_address_info(const coap_str_const_t *address,
   error = getaddrinfo(addrstr, NULL, &hints, &res);
 
   if (error != 0) {
+#ifdef WITH_LWIP
+    coap_log_warn("getaddrinfo: %s\n", strerror(error));
+#else
     coap_log_warn("getaddrinfo: %s\n", gai_strerror(error));
+#endif
     return NULL;
   }
 
