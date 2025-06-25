@@ -137,7 +137,7 @@ coap_option_iterator_init(const coap_pdu_t *pdu, coap_opt_iterator_t *oi,
   return oi;
 }
 
-COAP_STATIC_INLINE int
+static inline int
 opt_finished(coap_opt_iterator_t *oi) {
   assert(oi);
 

@@ -123,12 +123,12 @@ coap_free_node(coap_queue_t *node) {
 
 #include <lwip/memp.h>
 
-COAP_STATIC_INLINE coap_queue_t *
+static inline coap_queue_t *
 coap_malloc_node() {
   return (coap_queue_t *)memp_malloc(MEMP_COAP_NODE);
 }
 
-COAP_STATIC_INLINE void
+static inline void
 coap_free_node(coap_queue_t *node) {
   memp_free(MEMP_COAP_NODE, node);
 }
