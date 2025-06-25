@@ -148,7 +148,7 @@ print_timestamp(char *s, size_t len, coap_tick_t t) {
 
 #else /* alternative implementation: just print the timestamp */
 
-COAP_STATIC_INLINE size_t
+static inline size_t
 print_timestamp(char *s, size_t len, coap_tick_t t) {
 #ifdef HAVE_SNPRINTF
   return snprintf(s, len, "%u.%03u",
@@ -739,7 +739,7 @@ print_content_format(unsigned int format_type,
  * to carry binary data. The return value @c 0 hence indicates
  * printable data which is also assumed if @p content_format is @c 01.
  */
-COAP_STATIC_INLINE int
+static inline int
 is_binary(int content_format) {
   return !(content_format == -1 ||
            content_format == COAP_MEDIATYPE_TEXT_PLAIN ||

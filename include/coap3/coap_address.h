@@ -265,7 +265,7 @@ int coap_address_set_unix_domain(coap_address_t *addr,
 
 /* Convenience function to copy IPv6 addresses without garbage. */
 #if defined(WITH_LWIP) || defined(WITH_CONTIKI) || defined(RIOT_VERSION)
-COAP_STATIC_INLINE void
+static inline void
 coap_address_copy(coap_address_t *dst, const coap_address_t *src) {
   memcpy(dst, src, sizeof(coap_address_t));
 }
@@ -279,7 +279,7 @@ void coap_address_copy(coap_address_t *dst, const coap_address_t *src);
  * addresses are equal, @c 0 otherwise. The parameters @p a and @p b must not be
  * @c NULL;
  */
-COAP_STATIC_INLINE int
+static inline int
 coap_address_equals(const coap_address_t *a, const coap_address_t *b) {
   assert(a);
   assert(b);
@@ -324,7 +324,7 @@ int coap_is_af_unix(const coap_address_t *a);
  * Checks if given address @p a denotes a multicast address. This function
  * returns @c 1 if @p a is multicast, @c 0 otherwise.
  */
-COAP_STATIC_INLINE int
+static inline int
 coap_is_mcast(const coap_address_t *a) {
   return a && _coap_is_mcast_impl(a);
 }

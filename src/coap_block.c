@@ -428,7 +428,7 @@ coap_context_set_max_block_size_lkd(coap_context_t *context, size_t max_block_si
   return 1;
 }
 
-COAP_STATIC_INLINE int
+static inline int
 full_match(const uint8_t *a, size_t alen,
            const uint8_t *b, size_t blen) {
   return alen == blen && (alen == 0 || memcmp(a, b, alen) == 0);
