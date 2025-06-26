@@ -35,7 +35,7 @@
  * @return A pointer to the first occurence of @p c, or @c NULL
  * if not found.
  */
-COAP_STATIC_INLINE const uint8_t *
+static inline const uint8_t *
 strnchr(const uint8_t *s, size_t len, unsigned char c) {
   while (len && *s++ != c)
     --len;
