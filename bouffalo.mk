@@ -11,7 +11,6 @@ COMPONENT_ADD_INCLUDEDIRS += include
 
 COMPONENT_SRCS := \
 	src/coap_address.c \
-	src/coap_asn1.c \
 	src/coap_async.c \
 	src/coap_block.c \
 	src/coap_cache.c \
@@ -26,18 +25,15 @@ COMPONENT_SRCS := \
 	src/coap_netif.c \
 	src/coap_notls.c \
 	src/coap_option.c \
-	src/coap_oscore.c \
 	src/coap_pdu.c \
 	src/coap_prng.c \
 	src/coap_proxy.c \
 	src/coap_resource.c \
 	src/coap_session.c \
-	src/coap_sha1.c \
 	src/coap_str.c \
 	src/coap_subscribe.c \
 	src/coap_tcp.c \
 	src/coap_threadsafe.c \
-	src/coap_tinydtls.c \
 	src/coap_uri.c \
 	src/coap_ws.c
 
