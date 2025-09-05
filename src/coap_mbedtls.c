@@ -1761,7 +1761,7 @@ mbedtls_debug_out(void *ctx COAP_UNUSED, int level,
     coap_level = COAP_LOG_DEBUG;
     break;
   }
-  coap_dtls_log(coap_level, "%s", str);
+  printf("DTLS: %s: %s, %d, %s", error_level_to_string[level], file, line, str);
 }
 
 #if !COAP_DISABLE_TCP
