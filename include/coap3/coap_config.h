@@ -62,7 +62,7 @@
 
 #ifndef COAP_THREAD_SAFE
 /* Define to 1 if libcoap has thread safe support. */
-#define COAP_THREAD_SAFE 1
+#define COAP_THREAD_SAFE 0
 #endif
 
 #ifndef COAP_THREAD_RECURSIVE_CHECK
