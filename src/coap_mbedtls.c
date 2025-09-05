@@ -1644,6 +1644,7 @@ do_mbedtls_handshake(coap_session_t *c_session,
 #endif /* MBEDTLS_VERSION_NUMBER >= 0x03030000 */
        ) {
       if (++m_env->server_hello_cnt > 10) {
+        coap_log_info("Too many hello retries, check if keys are correct\n");
         /* retried this too many times */
         goto fail;
       }
