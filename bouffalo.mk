@@ -23,7 +23,6 @@ COMPONENT_SRCS := \
 	src/coap_layers.c \
 	src/coap_net.c \
 	src/coap_netif.c \
-	src/coap_notls.c \
 	src/coap_option.c \
 	src/coap_pdu.c \
 	src/coap_prng.c \
@@ -35,7 +34,8 @@ COMPONENT_SRCS := \
 	src/coap_tcp.c \
 	src/coap_threadsafe.c \
 	src/coap_uri.c \
-	src/coap_ws.c
+	src/coap_ws.c \
+	src/coap_mbedtls.c
 
 COMPONENT_SRCDIRS := src
 
