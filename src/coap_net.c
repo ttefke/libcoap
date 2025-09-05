@@ -847,9 +847,13 @@ coap_free_context_lkd(coap_context_t *context) {
 
 #ifdef WITH_LWIP
   if (context->timer_configured) {
+#if LWIP_TCPIP_CORE_LOCKING
     LOCK_TCPIP_CORE();
+#endif
     sys_untimeout(coap_io_process_timeout, (void *)context);
+#if LWIP_TCPIP_CORE_LOCKING
     UNLOCK_TCPIP_CORE();
+#endif
     context->timer_configured = 0;
   }
 #endif /* WITH_LWIP */
