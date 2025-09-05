@@ -40,6 +40,41 @@
 #include <lwip/errno.h>
 #endif
 
+#include <mbedtls/ssl_cookie.h>
+int mbedtls_ssl_cookie_setup(mbedtls_ssl_cookie_ctx *ctx,
+                             int (*f_rng)(void *, unsigned char *, size_t),
+                             void *p_rng)
+{
+  printf("%s stub\r\n", __func__);
+  return 0;
+}
+
+void mbedtls_ssl_cookie_free(mbedtls_ssl_cookie_ctx *ctx)
+{
+  printf("%s stub\r\n", __func__);
+}
+
+void mbedtls_ssl_cookie_init(mbedtls_ssl_cookie_ctx *ctx)
+{
+  printf("%s stub\r\n", __func__);
+}
+
+int mbedtls_ssl_cookie_write(void *p_ctx,
+                             unsigned char **p, unsigned char *end,
+                             const unsigned char *cli_id, size_t cli_id_len)
+{
+  printf("%s stub\r\n", __func__);
+  return 0;
+}
+
+int mbedtls_ssl_cookie_check(void *p_ctx,
+                             const unsigned char *cookie, size_t cookie_len,
+                             const unsigned char *cli_id, size_t cli_id_len)
+{
+  printf("%s stub\r\n", __func__);
+  return 0;
+}
+
 /*
  * This code can be conditionally compiled to remove some components if
  * they are not required to make a lighter footprint - all based on how
