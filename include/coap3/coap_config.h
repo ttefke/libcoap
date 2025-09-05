@@ -113,4 +113,5 @@
 #define HAVE_SNPRINTF
 //#define HAVE_ERRNO_H
 
+#define COAP_WITH_LIBMBEDTLS
 #endif /* COAP_CONFIG_H_ */
