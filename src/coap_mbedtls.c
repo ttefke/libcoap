@@ -1525,7 +1525,7 @@ do_mbedtls_handshake(coap_session_t *c_session,
       coap_log_warn("***%s: Alert '%d'%s\n",
                     coap_session_str(c_session), m_env->ssl.MBEDTLS_PRIVATE(in_msg[1]),
                     report_mbedtls_alert(m_env->ssl.MBEDTLS_PRIVATE(in_msg[1])));
-  /* Fall through */
+    __attribute__((__fallthrough__));
   case MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY:
   case MBEDTLS_ERR_SSL_CONN_EOF:
   case MBEDTLS_ERR_NET_CONN_RESET:
@@ -2230,6 +2230,7 @@ coap_dtls_send(coap_session_t *c_session,
     if (ret <= 0) {
       switch (ret) {
       case MBEDTLS_ERR_SSL_WANT_READ:
+        __attribute__((__fallthrough__));
       case MBEDTLS_ERR_SSL_WANT_WRITE:
         ret = 0;
         break;
