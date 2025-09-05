@@ -36,6 +36,10 @@
 
 #ifdef COAP_WITH_LIBMBEDTLS
 
+#ifdef WITH_LWIP
+#include <lwip/errno.h>
+#endif
+
 /*
  * This code can be conditionally compiled to remove some components if
  * they are not required to make a lighter footprint - all based on how
