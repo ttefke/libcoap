@@ -369,7 +369,7 @@ get_san_or_cn_from_cert(mbedtls_x509_crt *crt) {
   if (crt) {
     const mbedtls_asn1_named_data *cn_data;
 
-    if (crt->ext_types & MBEDTLS_X509_EXT_SUBJECT_ALT_NAME) {
+    if (crt->MBEDTLS_PRIVATE(ext_types) & MBEDTLS_X509_EXT_SUBJECT_ALT_NAME) {
       mbedtls_asn1_sequence *seq = &crt->subject_alt_names;
       while (seq && seq->buf.p == NULL) {
         seq = seq->next;
@@ -1202,7 +1202,7 @@ static int processed_ciphers = 0;
 static int
 coap_ssl_ciphersuite_uses_psk(const mbedtls_ssl_ciphersuite_t *info) {
 #if MBEDTLS_VERSION_NUMBER >= 0x03060000
-  switch (info->key_exchange) {
+  switch (info->MBEDTLS_PRIVATE(key_exchange)) {
   case MBEDTLS_KEY_EXCHANGE_PSK:
   case MBEDTLS_KEY_EXCHANGE_RSA_PSK:
   case MBEDTLS_KEY_EXCHANGE_DHE_PSK:
@@ -1245,7 +1245,7 @@ set_ciphersuites(mbedtls_ssl_config *conf, coap_enc_method_t method) {
 
       if (cur) {
 #if MBEDTLS_VERSION_NUMBER >= 0x03020000
-        if (cur->max_tls_version < MBEDTLS_SSL_VERSION_TLS1_2) {
+        if (cur->MBEDTLS_PRIVATE(max_tls_version) < MBEDTLS_SSL_VERSION_TLS1_2) {
           /* Minimum of TLS1.2 required - skip */
         }
 #else
@@ -1259,7 +1259,7 @@ set_ciphersuites(mbedtls_ssl_config *conf, coap_enc_method_t method) {
         }
 #endif /* MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED */
 #if MBEDTLS_VERSION_NUMBER >= 0x03060000
-        else if (cur->min_tls_version >= MBEDTLS_SSL_VERSION_TLS1_3) {
+        else if (cur->MBEDTLS_PRIVATE(min_tls_version) >= MBEDTLS_SSL_VERSION_TLS1_3) {
           psk_count++;
           pki_count++;
         }
@@ -1312,11 +1312,11 @@ set_ciphersuites(mbedtls_ssl_config *conf, coap_enc_method_t method) {
           mbedtls_ssl_ciphersuite_from_id(*list);
       if (cur) {
 #if MBEDTLS_VERSION_NUMBER >= 0x03020000
-        if (cur->max_tls_version < MBEDTLS_SSL_VERSION_TLS1_2) {
+        if (cur->MBEDTLS_PRIVATE(max_tls_version) < MBEDTLS_SSL_VERSION_TLS1_2) {
           /* Minimum of TLS1.2 required - skip */
         }
 #else
-        if (cur->max_minor_ver < MBEDTLS_SSL_MINOR_VERSION_3) {
+        if (cur->MBEDTLS_PRIVATE(max_minor_ver) < MBEDTLS_SSL_MINOR_VERSION_3) {
           /* Minimum of TLS1.2 required - skip */
         }
 #endif /* MBEDTLS_VERSION_NUMBER >= 0x03020000 */
@@ -1327,7 +1327,7 @@ set_ciphersuites(mbedtls_ssl_config *conf, coap_enc_method_t method) {
         }
 #endif /* MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED */
 #if MBEDTLS_VERSION_NUMBER >= 0x03060000
-        else if (cur->min_tls_version >= MBEDTLS_SSL_VERSION_TLS1_3) {
+        else if (cur->MBEDTLS_PRIVATE(min_tls_version) >= MBEDTLS_SSL_VERSION_TLS1_3) {
           *psk_list = *list;
           psk_list++;
           *pki_list = *list;
@@ -1635,10 +1635,10 @@ do_mbedtls_handshake(coap_session_t *c_session,
   case MBEDTLS_ERR_X509_CERT_VERIFY_FAILED:
     goto fail;
   case MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE:
-    if (m_env->ssl.in_msg[1] != MBEDTLS_SSL_ALERT_MSG_CLOSE_NOTIFY)
+    if (m_env->ssl.MBEDTLS_PRIVATE(in_msg[1]) != MBEDTLS_SSL_ALERT_MSG_CLOSE_NOTIFY)
       coap_log_warn("***%s: Alert '%d'%s\n",
-                    coap_session_str(c_session), m_env->ssl.in_msg[1],
-                    report_mbedtls_alert(m_env->ssl.in_msg[1]));
+                    coap_session_str(c_session), m_env->ssl.MBEDTLS_PRIVATE(in_msg[1]),
+                    report_mbedtls_alert(m_env->ssl.MBEDTLS_PRIVATE(in_msg[1])));
   /* Fall through */
   case MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY:
   case MBEDTLS_ERR_SSL_CONN_EOF:
