@@ -1730,6 +1730,8 @@ reset:
   return -1;
 }
 
+const char* const error_level_to_string[] = { "Emerg", "Warn", "Notice", "Info", "Debug" };
+
 static void
 mbedtls_debug_out(void *ctx COAP_UNUSED, int level,
                   const char *file COAP_UNUSED,
