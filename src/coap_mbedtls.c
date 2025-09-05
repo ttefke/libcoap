@@ -1638,9 +1638,9 @@ do_mbedtls_handshake(coap_session_t *c_session,
     break;
   case MBEDTLS_ERR_SSL_WANT_READ:
   case MBEDTLS_ERR_SSL_WANT_WRITE:
-    if (m_env->ssl.state == MBEDTLS_SSL_SERVER_HELLO
+    if (m_env->ssl.MBEDTLS_PRIVATE(state) == MBEDTLS_SSL_SERVER_HELLO
 #if MBEDTLS_VERSION_NUMBER >= 0x03030000
-        || m_env->ssl.state == MBEDTLS_SSL_NEW_SESSION_TICKET
+        || m_env->ssl.MBEDTLS_PRIVATE(state) == MBEDTLS_SSL_NEW_SESSION_TICKET
 #endif /* MBEDTLS_VERSION_NUMBER >= 0x03030000 */
        ) {
       if (++m_env->server_hello_cnt > 10) {
