@@ -40,4 +40,6 @@ COMPONENT_SRCS := \
 COMPONENT_SRCDIRS := src
 
 COMPONENT_OBJS := $(patsubst %.c,%.o, $(COMPONENT_SRCS))
+
+CFLAGS += -Wno-unused-parameter
 endif
