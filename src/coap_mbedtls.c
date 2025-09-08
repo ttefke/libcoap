@@ -1736,33 +1736,6 @@ static void
 mbedtls_debug_out(void *ctx COAP_UNUSED, int level,
                   const char *file COAP_UNUSED,
                   int line COAP_UNUSED, const char *str) {
-
-  coap_log_t coap_level = COAP_LOG_DEBUG;
-  /*
-   *  0 No debug
-   *  1 Error
-   *  2 State change
-   *  3 Informational
-   *  4 Verbose
-   */
-  switch (level) {
-  case 0:
-    coap_level = COAP_LOG_EMERG;
-    break;
-  case 1:
-    coap_level = COAP_LOG_WARN;
-    break;
-  case 2:
-    coap_level = COAP_LOG_NOTICE;
-    break;
-  case 3:
-    coap_level = COAP_LOG_INFO;
-    break;
-  case 4:
-  default:
-    coap_level = COAP_LOG_DEBUG;
-    break;
-  }
   printf("DTLS: %s: %s, %d, %s", error_level_to_string[level], file, line, str);
 }
 
