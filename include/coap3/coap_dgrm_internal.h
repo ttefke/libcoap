@@ -125,7 +125,7 @@ void coap_socket_close(coap_socket_t *sock);
 /** @} */
 
 #ifdef __cplusplus
-extern "C" {
+}
 #endif
 
 #endif /* COAP_DGRM_INTERNAL_H_ */
