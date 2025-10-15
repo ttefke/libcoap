@@ -794,7 +794,7 @@ void *coap_context_get_app_data(const coap_context_t *context);
  */
 COAP_API int coap_io_process(coap_context_t *ctx, uint32_t timeout_ms);
 
-#if !defined(RIOT_VERSION) && !defined(WITH_CONTIKI)
+#if !defined(RIOT_VERSION) && !defined(WITH_CONTIKI) && !defined(WITH_LWIP)
 /**
  * The main message processing loop with additional fds for internal select.
  *
@@ -825,7 +825,7 @@ COAP_API int coap_io_process(coap_context_t *ctx, uint32_t timeout_ms);
 COAP_API int coap_io_process_with_fds(coap_context_t *ctx, uint32_t timeout_ms,
                                       int nfds, fd_set *readfds, fd_set *writefds,
                                       fd_set *exceptfds);
-#endif /* ! RIOT_VERSION && ! WITH_CONTIKI */
+#endif /* ! RIOT_VERSION && ! WITH_CONTIKI  && ! WITH_LWIP*/
 
 /**
  * Check to see if there is any i/o pending for the @p context.

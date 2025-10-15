@@ -193,13 +193,13 @@ struct coap_context_t {
   int epfd;                        /**< External FD for epoll */
   int eptimerfd;                   /**< Internal FD for timeout */
 #else /* ! COAP_EPOLL_SUPPORT */
-#if !defined(RIOT_VERSION) && !defined(WITH_CONTIKI)
+#if !defined(RIOT_VERSION) && !defined(WITH_CONTIKI) && !defined(WITH_LWIP)
   fd_set readfds, writefds, exceptfds; /**< Used for select call
                                             in coap_io_process_with_fds_lkd() */
   coap_socket_t *sockets[64];      /**< Track different socket information
                                         in coap_io_process_with_fds_lkd() */
   unsigned int num_sockets;        /**< Number of sockets being tracked */
-#endif /* ! RIOT_VERSION && ! WITH_CONTIKI */
+#endif /* ! RIOT_VERSION && ! WITH_CONTIKI && ! WITH_LWIP */
 #endif /* ! COAP_EPOLL_SUPPORT */
 #if COAP_SERVER_SUPPORT
   uint8_t observe_pending;         /**< Observe response pending */
@@ -821,7 +821,7 @@ int coap_io_process_loop_lkd(coap_context_t *context,
                              void *main_loop_code_arg, uint32_t timeout_ms,
                              uint32_t thread_count);
 
-#if !defined(RIOT_VERSION) && !defined(WITH_CONTIKI)
+#if !defined(RIOT_VERSION) && !defined(WITH_CONTIKI) && !defined(WITH_LWIP)
 /**
  * The main message processing loop with additional fds for internal select.
  *
@@ -854,7 +854,7 @@ int coap_io_process_loop_lkd(coap_context_t *context,
 int coap_io_process_with_fds_lkd(coap_context_t *ctx, uint32_t timeout_ms,
                                  int nfds, fd_set *readfds, fd_set *writefds,
                                  fd_set *exceptfds);
-#endif /* ! RIOT_VERSION && ! WITH_CONTIKI */
+#endif /* ! RIOT_VERSION && ! WITH_CONTIKI && ! WITH_LWIP*/
 
 /*
  * Get the current libcoap usage of file descriptors that are in a read or write pending state.
